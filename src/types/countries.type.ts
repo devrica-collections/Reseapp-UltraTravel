@@ -1,14 +1,12 @@
 export type Country = {
-    names: {
-        common: string;
-    };
+    name: string;
+    alpha3Code: string;
     region: string;
-}
+    capital: string;
+    flags: Flag;
+    population: number;
+    area: number;
 
-export type CountriesResponse = {
-    data: {
-        objects: Country[];
-    };
 }
 
 export type Flag = {

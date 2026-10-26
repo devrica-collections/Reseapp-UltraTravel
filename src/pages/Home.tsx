@@ -1,37 +1,10 @@
-import { useEffect, useState } from 'react'
-import { getCountries } from '../services/countriesService'
-import type { Country } from '../types/countries.type'
+import { useCountries } from '../hooks/useCountries'
 
 function Home() {
-    const [countries, setCountries] = useState<Country[]>([])
-    const [status, setStatus] = useState('Hämtar länder...')
+    const { data: countries, status } = useCountries()
 
-    useEffect(() => {
-        let ignore = false
-
-        async function loadCountries() {
-            try {
-                const fetchedCountries = await getCountries()
-
-                if (ignore) return
-
-                setCountries(fetchedCountries)
-                console.log('Länder från API:', fetchedCountries)
-                setStatus('Länderna är hämtade.')
-            } catch (error) {
-                if (ignore) return
-
-                console.error('Anropet misslyckades:', error)
-                setStatus('Kunde inte hämta länder. Se felet i konsolen.')
-            }
-        }
-
-        loadCountries()
-
-        return () => {
-            ignore = true
-        }
-    }, [])
+    if (status === 'pending') return <p>Laddar...</p>
+    if (status === 'error') return <p>Kunde inte ladda länder.</p>
 
     return (
         <main>
@@ -39,10 +12,10 @@ function Home() {
         <p role="status">{status}</p>
         <p>Antal hämtade länder: {countries.length}</p>
         <ul>
-            {countries.map((country) => (
-                <li key={country.names.common}>
-                    {country.names.common} – {country.region}
-                </li>
+            {countries.map((countries) => (
+                <p key={countries.name}>
+                    {countries.name} – {countries.region}
+                </p>
             ))}
         </ul>
         </main>
