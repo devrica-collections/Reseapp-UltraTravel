@@ -1,4 +1,5 @@
 import { useCountries } from '../hooks/useCountries'
+import { Link } from 'react-router'
 
 function Home() {
     const { data: countries, status } = useCountries()
@@ -7,18 +8,22 @@ function Home() {
     if (status === 'error') return <p>Kunde inte ladda länder.</p>
 
     return (
-        <main>
+        <>
         <h1>Länder</h1>
         <p role="status">{status}</p>
         <p>Antal hämtade länder: {countries.length}</p>
         <ul>
-            {countries.map((countries) => (
-                <p key={countries.name}>
-                    {countries.name} – {countries.region}
-                </p>
+            {countries.map((country) => (
+                <li key={country.alpha3Code}>
+                    <Link to={`/country/${country.alpha3Code}`}>
+                        {country.name}
+                    </Link>
+                    {' – '}
+                    {country.region}
+                </li>
             ))}
         </ul>
-        </main>
+        </>
     )
 }
 

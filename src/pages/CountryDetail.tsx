@@ -4,9 +4,9 @@ function CountryDetail() {
     const { code } = useParams()
 
     return (
-        <main>
+        <>
             <p>Landkod: {code}</p>
-        </main>
+        </>
     )
 }
 
