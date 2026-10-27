@@ -11,4 +11,5 @@ export type Country = {
 
 export type Flag = {
     png: string;
+    svg: string;
 }
