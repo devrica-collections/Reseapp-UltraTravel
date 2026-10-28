@@ -48,7 +48,7 @@ npm run preview
 
 ## Publicerad app
 
-TODO: Lägg till länken till den publicerade appen.
+[UltraTravel.](https://ultratravel.netlify.app/)
 
 ## AI-redovisning
 
