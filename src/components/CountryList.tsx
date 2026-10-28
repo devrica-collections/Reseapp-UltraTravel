@@ -1,30 +1,18 @@
-import { Link } from 'react-router'
+import { useLocation } from 'react-router'
 import type { Country } from '../types/countries.type'
+import CountryCard from './CountryCard'
 
 type CountryListProps = {
     countries: Country[]
 }
 
 function CountryList({ countries }: CountryListProps) {
+    const { search } = useLocation()
     return (
-        <ul>
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {countries.map((country) => (
-                <li key={country.alpha3Code}>
-                    <img
-                        src={country.flags.png}
-                        alt={`Flagga för ${country.name}`}
-                        width={80}
-                    />
-
-                    <Link to={`/country/${country.alpha3Code}`}>
-                        {country.name}
-                    </Link>
-
-                    <p>Region: {country.region}</p>
-
-                    {country.capital && (
-                        <p>Huvudstad: {country.capital}</p>
-                    )}
+                <li key={country.alpha3Code} className="min-w-0">
+                    <CountryCard country={country} search={search} />
                 </li>
             ))}
         </ul>

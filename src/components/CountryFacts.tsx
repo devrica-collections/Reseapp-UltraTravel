@@ -14,36 +14,51 @@ function CountryFacts({ country }: CountryFactsProps) {
         .join(', ')
 
     return (
-        <section>
+        <section className="detail-panel">
             <h2>Basfakta</h2>
 
             <img
                 src={country.flags.png}
                 alt={`Flagga för ${country.name}`}
                 width={160}
+                className="detail-flag"
             />
 
             <dl>
-                <dt>Namn på landets eget språk</dt>
-                <dd>{country.nativeName || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Namn på landets eget språk</dt>
+                    <dd>{country.nativeName || 'Uppgift saknas'}</dd>
+                </div>
 
-                <dt>Region</dt>
-                <dd>{country.region || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Region</dt>
+                    <dd>{country.region || 'Uppgift saknas'}</dd>
+                </div>
 
-                <dt>Delregion</dt>
-                <dd>{country.subregion || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Delregion</dt>
+                    <dd>{country.subregion || 'Uppgift saknas'}</dd>
+                </div>
 
-                <dt>Huvudstad</dt>
-                <dd>{country.capital || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Huvudstad</dt>
+                    <dd>{country.capital || 'Uppgift saknas'}</dd>
+                </div>
 
-                <dt>Befolkning</dt>
-                <dd>{country.population.toLocaleString('sv-SE')}</dd>
+                <div className="fact-row">
+                    <dt>Befolkning</dt>
+                    <dd>{country.population.toLocaleString('sv-SE')}</dd>
+                </div>
 
-                <dt>Språk</dt>
-                <dd>{languages || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Språk</dt>
+                    <dd>{languages || 'Uppgift saknas'}</dd>
+                </div>
 
-                <dt>Valuta</dt>
-                <dd>{currencies || 'Uppgift saknas'}</dd>
+                <div className="fact-row">
+                    <dt>Valuta</dt>
+                    <dd>{currencies || 'Uppgift saknas'}</dd>
+                </div>
             </dl>
         </section>
     )

@@ -1,0 +1,198 @@
+.country-detail {
+    padding: 1.5rem 1rem 2.5rem;
+    color: var(--foreground);
+    background: var(--background);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.country-detail h1 {
+    margin: 1.5rem 0;
+    color: var(--foreground);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+}
+
+.country-detail h2 {
+    margin: 0 0 1.25rem;
+    color: var(--card-foreground);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: normal;
+}
+
+.country-detail p {
+    line-height: 1.7;
+}
+
+.country-detail .detail-back,
+.country-detail .detail-retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.country-detail .detail-back:hover,
+.country-detail .detail-retry:hover {
+    border-color: var(--primary);
+    background: var(--muted);
+}
+
+.country-detail .detail-retry {
+    margin-top: 1rem;
+}
+
+.country-detail a:focus-visible,
+.country-detail button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.detail-overview {
+    display: grid;
+    align-items: start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-overview > * {
+    min-width: 0;
+    margin-block: 0;
+}
+
+.country-detail .detail-panel {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+}
+
+.country-detail .detail-flag {
+    display: block;
+    width: 10rem;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+}
+
+.country-detail .fact-row {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: 0.875rem;
+}
+
+.country-detail .fact-row + .fact-row {
+    border-top: 1px solid var(--border);
+}
+
+.country-detail dt {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.country-detail dd {
+    margin: 0;
+    min-width: 0;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.country-detail .weather-place {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.country-detail .weather-description {
+    margin-block: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.weather-values {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.country-detail .weather-values dd {
+    margin-top: 0.25rem;
+    font-size: 1.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.wiki-content {
+    display: grid;
+    align-items: start;
+    gap: 1.5rem;
+}
+
+.country-detail .wiki-image {
+    width: 100%;
+    max-width: 16rem;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.country-detail .wiki-text {
+    max-width: 70ch;
+    white-space: pre-line;
+    line-height: 1.85;
+}
+
+.country-detail .wiki-source {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.country-detail .wiki-source a {
+    color: var(--card-foreground);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+@media (min-width: 640px) {
+    .country-detail {
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .country-detail .detail-panel {
+        padding: 1.5rem;
+    }
+
+    .country-detail .fact-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+        gap: 1rem;
+    }
+
+    .wiki-content-with-image {
+        grid-template-columns: 10rem minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .detail-overview {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+}

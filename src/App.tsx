@@ -3,13 +3,12 @@ import Home from './pages/Home'
 import CountryDetail from './pages/CountryDetail'
 import NotFound from './pages/NotFound'
 import Footer from './components/Footer'
+import Navbar from './components/Navbar'
 import './App.css'
 
 function App() {
   return <>
-    <header>
-
-    </header>
+    <Navbar />
     <main className="flex-1">
 
       <Routes>

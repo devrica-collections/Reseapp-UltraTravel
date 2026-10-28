@@ -1,4 +1,5 @@
 import { useWiki } from '../hooks/useWiki'
+import ContentSkeleton from './ContentSkeleton'
 
 type CountryInfoProps = {
     countryName: string
@@ -12,14 +13,15 @@ function CountryInfo({ countryName }: CountryInfoProps) {
     }
 
     if (status === 'pending') {
-        return <p role="status">Hämtar information från Wikipedia...</p>
+        return <ContentSkeleton label="Hämtar information från Wikipedia..." showImage />
     }
 
     if (status === 'error') {
         return (
-            <div>
+            <div className="detail-panel">
+                <h2>Om {countryName}</h2>
                 <p role="alert">Kunde inte hämta information från Wikipedia.</p>
-                <button type="button" onClick={() => refetch()}>
+                <button className="detail-retry" type="button" onClick={() => refetch()}>
                     Försök igen
                 </button>
             </div>
@@ -27,21 +29,23 @@ function CountryInfo({ countryName }: CountryInfoProps) {
     }
 
     return (
-        <section>
+        <section className="detail-panel">
             <h2>Om {countryName}</h2>
 
-            {wiki.thumbnail && (
-                <img
-                    src={wiki.thumbnail.source}
-                    alt={`Artikelbild för ${wiki.title}`}
-                    width={wiki.thumbnail.width}
-                    height={wiki.thumbnail.height}
-                />
-            )}
+            <div className={`wiki-content ${wiki.thumbnail ? 'wiki-content-with-image' : ''}`}>
+                {wiki.thumbnail && (
+                    <img
+                        className="wiki-image"
+                        src={wiki.thumbnail.source}
+                        alt={`Artikelbild för ${wiki.title}`}
+                        width={wiki.thumbnail.width}
+                        height={wiki.thumbnail.height}
+                    />
+                )}
+                <p lang="en" className="wiki-text">{wiki.extract}</p>
+            </div>
 
-            <p lang="en">{wiki.extract}</p>
-
-            <p>
+            <p className="wiki-source">
                 Källa: <a href={wiki.content_urls.desktop.page}>Wikipedia</a>
             </p>
         </section>

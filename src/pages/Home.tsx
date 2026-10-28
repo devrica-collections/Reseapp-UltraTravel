@@ -4,12 +4,20 @@ import CountryList from '../components/CountryList'
 import CountrySearch from '../components/CountrySearch'
 import RegionFilter from '../components/RegionFilter'
 import Pagination from '../components/Pagination'
+import CountryListSkeleton from '../components/CountryListSkeleton'
 
 function Home() {
     const { data: countries, status } = useCountries()
     const { query, region, page, setQuery, setRegion, setPage } = useCountryFilter()
 
-    if (status === 'pending') return <p>Laddar...</p>
+    if (status === 'pending') {
+        return (
+            <>
+                <h1>Länder</h1>
+                <CountryListSkeleton />
+            </>
+        )
+    }
     if (status === 'error') return <p>Kunde inte ladda länder.</p>
 
     const normalizedQuery = query.trim().toLowerCase()
@@ -41,16 +49,23 @@ function Home() {
 
     return (
         <>
-        <h1>Länder</h1>
-        <CountrySearch
-            query={query}
-            onQueryChange={setQuery}
-        />
-        <RegionFilter
-            region={region}
-            onRegionChange={setRegion}
-        />
-        <p role="status">{status}</p>
+        <div
+            role="search"
+            aria-label="Sök och filtrera länder"
+            className="mx-4 mb-6 space-y-5 rounded-xl border border-border bg-card p-4 text-card-foreground shadow-sm sm:mx-6 sm:p-6"
+        >
+            <CountrySearch
+                query={query}
+                onQueryChange={setQuery}
+            />
+            <RegionFilter
+                region={region}
+                onRegionChange={setRegion}
+            />
+            <p role="status" className="text-left text-sm text-muted-foreground">
+                {filteredCountries.length} {filteredCountries.length === 1 ? 'land' : 'länder'} matchar dina val
+            </p>
+        </div>
         {filteredCountries.length === 0 ? (
             <p role="status">Inga länder matchar dina kriterier</p>
         ) : (
