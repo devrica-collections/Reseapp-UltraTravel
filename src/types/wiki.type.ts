@@ -1,9 +1,14 @@
 export type WikiDetail = {
     title: string;
     extract: string;
-    thumbnail: {
+    thumbnail?: {
         source: string;
         width: number;
         height: number;
+    }
+        content_urls: {
+        desktop: {
+            page: string
+        }
     }
 };
